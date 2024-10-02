@@ -92,11 +92,23 @@ static const struct CharacterCustomizationPaletteSwitch sCharacterPalSwitchTable
 	};
 
 #else //Modify this
+
+	extern const struct EventObjectGraphicsInfo gFollowingMonGraphics[];
+
+	static NPCPtr sOverworldTable2[] =
+	{
+		&gFollowingMonGraphics[0],
+		&gFollowingMonGraphics[1],
+		&gFollowingMonGraphics[2],
+		&gFollowingMonGraphics[3],
+		&gFollowingMonGraphics[4],
+	};
+
 	// create 255 OW tables
 	const struct EventObjectGraphicsInfo** const gOverworldTableSwitcher[255] =
 	{
 		(NPCPtr*) 0x839FDB0,
-		(NPCPtr*) 0x0,
+		sOverworldTable2,
 		// etc...
 		// please note that this method makes compatability with OW Manager challenging
 	};
