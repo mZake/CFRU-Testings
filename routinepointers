@@ -251,3 +251,18 @@ FieldUseFunc_FormChangeItem 887D334
 FieldUseFunc_AbilityCapsule 8877168
 FieldUseFunc_AbilityCapsule 887CA9C
 #endif
+
+/* Following Mon */
+CB2_ReturnToFieldWithOpenMenu 806F4E4
+CB2_ReturnToFieldWithOpenMenu 806F53C
+CB2_ReturnToFieldWithOpenMenu 806F5A0
+CB2_ReturnToFieldWithOpenMenu 808841C
+CB2_ReturnToFieldWithOpenMenu 809FCB4
+CB2_ReturnToFieldWithOpenMenu 809FCDC
+CB2_ReturnToFieldWithOpenMenu 809FD04
+CB2_ReturnToFieldWithOpenMenu 809FD2C
+CB2_ReturnToFieldWithOpenMenu 809FD54
+CB2_ReturnToFieldWithOpenMenu 8102878
+CB2_ReturnToFieldWithOpenMenu 8107EC8
+CB2_ReturnToFieldWithOpenMenu 8124AD8
+CB2_ReturnToFieldWithOpenMenu 8126ED8

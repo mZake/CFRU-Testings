@@ -1412,3 +1412,29 @@ bool8 ShouldFollowerIgnoreActiveScript(void)
 	return FALSE;
 	#endif
 }
+
+// Made by ansh860
+void UpdateFollowingMonSprite(void)
+{
+    struct EventObject* follower = &gEventObjects[GetFollowerMapObjId()];
+    u8 oldSpriteId = follower->spriteId;
+    u16 newGraphicsId = GetFollowerSprite();
+    
+    struct EventObject backupFollower = *follower;
+    backupFollower.graphicsIdLowerByte = newGraphicsId & 0xFF;
+    backupFollower.graphicsIdUpperByte = newGraphicsId >> 8;
+    DestroySprite(&gSprites[oldSpriteId]);
+    RemoveEventObject(&gEventObjects[GetFollowerMapObjId()]);
+
+    struct EventObjectTemplate clone = *GetEventObjectTemplateByLocalIdAndMap(gFollowerState.map.id, gFollowerState.map.number, gFollowerState.map.group);
+    clone.graphicsIdLowerByte = newGraphicsId & 0xFF;
+    clone.graphicsIdUpperByte = newGraphicsId >> 8;
+    gFollowerState.objId = TrySpawnEventObjectTemplate(&clone, gSaveBlock1->location.mapNum, gSaveBlock1->location.mapGroup, clone.x, clone.y);
+
+    follower = &gEventObjects[GetFollowerMapObjId()];
+    u8 newSpriteId = follower->spriteId;
+    *follower = backupFollower;
+    follower->spriteId = newSpriteId;
+    MoveEventObjectToMapCoords(follower, follower->currentCoords.x, follower->currentCoords.y);
+    EventObjectTurn(follower, follower->facingDirection);
+}

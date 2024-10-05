@@ -2,7 +2,8 @@
 #include "../include/pokemon.h"
 #include "../include/new/follow_me.h"
 
-void UpdateFollowingMonSprite(void)
+// Made by Zake
+void ChangeFollowingMonSprite(void)
 {
     u8 SlotId = 0xFE;
     u16 OwTableId = 0;

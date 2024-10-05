@@ -2721,3 +2721,20 @@ const union AnimCmd gEventObjectImageAnim_RunEast[] =
 	ANIMCMD_JUMP(0),
 };
 #endif
+
+// Made by André Freitas
+#define RetunFieldOpenedMenu ((void*)0x0807E3BD)
+void ChangeFollowingMonSprite(void);
+void UpdateFollowingMonSprite(void);
+
+void CB2_ReturnToFieldWithOpenMenu(void)
+{
+    FieldClearVBlankHBlankCallbacks(); 
+    gFieldCallback2 = RetunFieldOpenedMenu;
+	if (FlagGet(FLAG_FOLLOWING_POKEMON))
+	{
+    	ChangeFollowingMonSprite();
+    	UpdateFollowingMonSprite();
+    }
+    CB2_ReturnToField();
+}
