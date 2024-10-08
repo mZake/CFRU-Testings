@@ -252,7 +252,7 @@ FieldUseFunc_AbilityCapsule 8877168
 FieldUseFunc_AbilityCapsule 887CA9C
 #endif
 
-/* Following Mon */
+##Following Mon
 CB2_ReturnToFieldWithOpenMenu 806F4E4
 CB2_ReturnToFieldWithOpenMenu 806F53C
 CB2_ReturnToFieldWithOpenMenu 806F5A0
