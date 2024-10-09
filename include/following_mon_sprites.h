@@ -39,3 +39,36 @@ static const struct SpritePalette sObjectEventSpritePalettes12[] =
     {gFollowingMonPic0004_Charmander_PNGPal, 0x1203},
     {gFollowingMonPic0005_Charmeleon_PNGPal, 0x1204},
 };
+
+#define MON_OW_TEMPLATE_32x32_FRAMES(Id, name)                             \
+static const struct SpriteFrameImage sPicTable_##name[] = {                \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 0),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 1),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 2),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 3),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 4),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 5),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 6),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 7),    \
+    overworld_frame(gFollowingMonPic##Id##_##name##_PNGTiles, 4, 4, 8),    \
+};
+
+#define MON_OW_OBJECT_GRAPHICS(PalId, name)                     \
+    {                                                           \
+        .tileTag = 0xFFFF,                                      \
+        .paletteTag1 = 0x##PalId,                               \
+        .paletteTag2 = EVENT_OBJ_PAL_TAG_NONE,                  \
+        .size = (32 * 32) / 2,                                  \
+        .width = 32,                                            \
+        .height = 32,                                           \
+        .shadowSize = SHADOW_SIZE_M,                            \
+        .inanimate = FALSE,                                     \
+        .disableReflectionPaletteLoad = FALSE,                  \
+        .tracks = TRACKS_FOOT,                                  \
+        .gender = MALE,                                         \
+        .oam = gEventObjectBaseOam_32x32,                       \
+        .subspriteTables = gEventObjectSpriteOamTables_32x32,   \
+        .anims = gEventObjectImageAnimTable_Standard,           \
+        .images = sPicTable_##name,                             \
+        .affineAnims = gDummySpriteAffineAnimTable,             \
+    },
