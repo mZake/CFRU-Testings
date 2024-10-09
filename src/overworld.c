@@ -2733,8 +2733,11 @@ void CB2_ReturnToFieldWithOpenMenu(void)
     gFieldCallback2 = RetunFieldOpenedMenu;
 	if (FlagGet(FLAG_FOLLOWING_POKEMON))
 	{
-    	ChangeFollowingMonSprite();
-    	UpdateFollowingMonSprite();
+		if (gFollowerState.inProgress)
+		{
+    		ChangeFollowingMonSprite();
+    		UpdateFollowingMonSprite();
+		}
     }
     CB2_ReturnToField();
 }
