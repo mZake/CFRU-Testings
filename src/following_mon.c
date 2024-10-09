@@ -71,16 +71,26 @@ void ChangeFollowingMonSprite(void)
     gFollowerState.gfxId = GfxId;
 }
 
-void CreateFollowingMon(void)
+u8 CreateFollowingMon(void)
 {
     struct EventObjectTemplate FollowingMon;
     u16 Sprite = GetFollowingMonSprite();
     s16 PosX = gEventObjects[gPlayerAvatar->eventObjectId].currentCoords.x;
     s16 PosY = gEventObjects[gPlayerAvatar->eventObjectId].currentCoords.y;
+    u8 LocalId = 0;
     PosX -= 7;
     PosY -= 7;
 
-    FollowingMon.localId = 14;
+    for (u8 i = 0; i < 16; ++i)
+    {
+        if (!gEventObjects[i].active)
+        {
+            LocalId = i;
+            break;
+        }
+    }
+
+    FollowingMon.localId = LocalId;
     FollowingMon.graphicsIdLowerByte = Sprite & 0xFF;
     FollowingMon.graphicsIdUpperByte = Sprite >> 8;
     FollowingMon.x = PosX;
@@ -92,4 +102,6 @@ void CreateFollowingMon(void)
     FollowingMon.trainerType = 0;
     FollowingMon.trainerRange_berryTreeId = 0;
     SpawnSpecialEventObject(&FollowingMon);
+
+    return LocalId;
 }

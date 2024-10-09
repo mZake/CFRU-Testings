@@ -54,7 +54,7 @@ static void TurnNPCIntoFollower(u8 localId, u8 followerFlags);
 
 void ChangeFollowingMonSprite(void);
 void UpdateFollowingMonSprite(void);
-void CreateFollowingMon(void);
+u8 CreateFollowingMon(void);
 u16 GetFollowingMonSprite(void);
 
 #define MOVEMENT_INVALID 0xFE
@@ -1351,14 +1351,9 @@ static void TurnNPCIntoFollower(u8 localId, u8 followerFlags)
 void sp0D1_SetUpFollowerSprite(void)
 {
 	if (FlagGet(FLAG_FOLLOWING_POKEMON))
-	{
-		CreateFollowingMon();
-		TurnNPCIntoFollower(14, Var8001);
-	}
+		TurnNPCIntoFollower(CreateFollowingMon(), Var8001);
 	else
-	{
 		TurnNPCIntoFollower(VarGet(Var8000), Var8001);
-	}
 }
 
 //@Details: Ends the follow me feature.
