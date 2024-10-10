@@ -2742,6 +2742,23 @@ void CB2_ReturnToFieldWithOpenMenu(void)
     CB2_ReturnToField();
 }
 
+static u16 GetTrainerAFlag(void)
+{
+    return FLAG_TRAINER_FLAG_START + gTrainerBattleOpponent_A;
+}
+
+static u16 GetTrainerBFlag(void)
+{
+    return FLAG_TRAINER_FLAG_START + gTrainerBattleOpponent_B;
+}
+
+static void SetBattledTrainersFlags(void)
+{
+    if (gTrainerBattleOpponent_B != 0)
+        FlagSet(GetTrainerBFlag());
+    FlagSet(GetTrainerAFlag());
+}
+
 static bool32 IsPlayerDefeated(u32 battleOutcome)
 {
     switch (battleOutcome)
@@ -2781,5 +2798,9 @@ static void CB2_EndTrainerBattle(void)
 			ChangeFollowingMonSprite();
 			UpdateFollowingMonSprite();
 		}
+		if (!InBattleSands())
+        {
+            SetBattledTrainersFlags();
+        }
     }
 }
