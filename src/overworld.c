@@ -2741,3 +2741,45 @@ void CB2_ReturnToFieldWithOpenMenu(void)
     }
     CB2_ReturnToField();
 }
+
+static bool32 IsPlayerDefeated(u32 battleOutcome)
+{
+    switch (battleOutcome)
+    {
+    case B_OUTCOME_LOST:
+    case B_OUTCOME_DREW:
+        return TRUE;
+    case B_OUTCOME_WON:
+    case B_OUTCOME_RAN:
+    case B_OUTCOME_PLAYER_TELEPORTED:
+    case B_OUTCOME_MON_FLED:
+    case B_OUTCOME_CAUGHT:
+        return FALSE;
+    default:
+        return FALSE;
+    }
+}
+
+static void CB2_EndTrainerBattle(void)
+{
+    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
+    {
+        CB2_ReturnToFieldContinueScriptPlayMapMusic();
+    }
+    else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
+    {
+        if (InBattleSands())
+            CB2_ReturnToFieldContinueScriptPlayMapMusic();
+        else
+            CB2_WhiteOut();
+    }
+    else
+    {
+        CB2_ReturnToFieldContinueScriptPlayMapMusic();
+		if (FlagGet(FLAG_FOLLOWING_POKEMON))
+		{
+			ChangeFollowingMonSprite();
+			UpdateFollowingMonSprite();
+		}
+    }
+}

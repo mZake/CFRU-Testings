@@ -34,7 +34,6 @@ void __attribute__((long_call)) SetMapVarsToTrainer(void);
 //u8* __attribute__((long_call)) BattleSetup_ConfigureTrainerBattle(u8 *data);
 void __attribute__((long_call)) TrainerWantsBattle(u8 trainerEventObjId, const u8 *trainerScript);
 //u32 __attribute__((long_call)) GetTrainerFlagFromScriptPointer(const u8 *data);
-void __attribute__((long_call)) CB2_EndTrainerBattle(void);
 bool8 __attribute__((long_call)) GetTrainerApproachDistance(struct EventObject* trainerObj);
 void __attribute__((long_call)) TrainerApproachPlayer(struct EventObject* trainerObj, u8 range);
 u16 __attribute__((long_call)) GetRematchTrainerId(u16 opponentId);
@@ -43,6 +42,7 @@ u16 __attribute__((long_call)) GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMon
 u16 __attribute__((long_call)) GetSumOfPlayerPartyLevel(u8 numMons);
 bool8 __attribute__((long_call)) HasTrainerBeenFought(u16 trainerId);
 bool32 __attribute__((long_call)) IsThisTrainerRematchable(u32);
+static void CB2_EndTrainerBattle(void);
 
 /*
 void __attribute__((long_call)) BattleSetup_StartScriptedWildBattle(void);
