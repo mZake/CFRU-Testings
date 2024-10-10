@@ -13,7 +13,7 @@ u16 GetFollowingMonSprite(void)
     u16 OwTableId = 0;
 
     for (s8 i = 5; i >= 0; --i)
-        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL) && GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL))
             SlotId = i;
 
     if (SlotId == 0xFE) //Quer dizer que todos os mons são ovos
