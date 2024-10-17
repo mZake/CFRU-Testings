@@ -636,6 +636,10 @@ static u8 DetermineFollowerState(struct EventObject* follower, u8 state, u8 dire
 					case MOVEMENT_ACTION_RUN_LEFT_DOWN_FACE_LEFT ... MOVEMENT_ACTION_RUN_LEFT_UP_FACE_LEFT:
 						state = (newState - MOVEMENT_ACTION_RUN_LEFT_DOWN_FACE_LEFT) + simpleState;
 						break;
+
+					gFollowerState.delayedState = delayState;
+					newState = MOVEMENT_INVALID;
+					RETURN_STATE(state, 1); //Each is its own movement
 				}
 			#else
 			else if (newState - direction >= MOVEMENT_ACTION_WALK_NORMAL_LEFT_DOWN_FACE_DOWN
@@ -653,13 +657,12 @@ static u8 DetermineFollowerState(struct EventObject* follower, u8 state, u8 dire
 						state = (newState - MOVEMENT_ACTION_WALK_FAST_LEFT_DOWN_FACE_DOWN) + simpleState;
 						break;
 				}
-			#endif
 
 				gFollowerState.delayedState = delayState;
 				newState = MOVEMENT_INVALID;
 				RETURN_STATE(state, 1); //Each is its own movement
 			}
-
+			#endif
 			gFollowerState.delayedState = delayState;
 			RETURN_STATE(action, direction); //Each is its own movement
 
